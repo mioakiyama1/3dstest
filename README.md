@@ -1,2 +1,3 @@
 # 3dstest
-testing 3ds homebrew...
+MASTER: default with button input recognition
+experimental: currently on v0.0
