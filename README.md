@@ -1,9 +1,3 @@
-# 3dstest
-MASTER: default with button input recognition
+# not functional yet (5-10-2020)
 
-v0.0 - 4 regions on top screen
-
-v0.01 - 1 region on bottom, color support
-
-v0.02 - Fixed SMDH so correct info is given (in makefile)
-
+experimental to introduce different fonts, but unresolved references in libraries
