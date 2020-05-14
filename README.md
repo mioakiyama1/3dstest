@@ -15,4 +15,6 @@ v0.04 - press X for a new screen
 
 v0.05 - new screen can now launch applets
 
+v0.06 - remote launcher (B) has multiple options
+
 Made with: devkitARM msys2 Programmer's notepad
