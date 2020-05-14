@@ -1,5 +1,4 @@
-main.o: C:/devkitpro/examples/HBAPP3ds/source/main.c \
- C:/devkitPro/libctru/include/3ds.h \
+mod.o: C:/HB/3ds/testing/source/mod.c C:/devkitPro/libctru/include/3ds.h \
  C:/devkitPro/libctru/include/3ds/types.h \
  C:/devkitPro/libctru/include/3ds/result.h \
  C:/devkitPro/libctru/include/3ds/ipc.h \

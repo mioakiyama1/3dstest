@@ -1,28 +1,21 @@
-/*
-	Multiple Windows Text example made by Aurelio Mannara for ctrulib
-	This code was modified for the last time on: 12/12/2014 23:50 UTC+1
-
-*/
-
 #include <3ds.h>
 #include <stdio.h>
+#include <string.h>
 
 int main(int argc, char **argv)
 {
-	// leave this to initialize
 	gfxInitDefault();
+	
+	u8 param[0x300];
+	u8 hmac[0x20];
 
-	//ADD ALL NEW WINDOWS HERE
 	PrintConsole bWindow, rightbWindow, leftbWindow, leftWindow, rightWindow;
-
-	//Initialize console for each window
 	consoleInit(GFX_TOP, &leftWindow);
 	consoleInit(GFX_TOP, &rightWindow);
 	consoleInit(GFX_TOP, &rightbWindow);
 	consoleInit(GFX_TOP, &leftbWindow);
 	consoleInit(GFX_BOTTOM, &bWindow);
 
-	//Now we specify the window position and dimension for each console window using consoleSetWindow(PrintConsole* console, int x, int y, int width, int height);
 	//x, y, width and height are in terms of cells, not pixel, where each cell is composed by 8x8 pixels.
 	consoleSetWindow(&leftWindow, 1, 1, 23, 14);
 	consoleSetWindow(&rightWindow, 26, 1, 23, 14);
@@ -57,6 +50,14 @@ int main(int argc, char **argv)
 		{
 		consoleSelect(&leftbWindow);
 		printf("A input works...");
+		}
+		
+		if (kDown & KEY_B)
+		{
+		memset(param, 0, sizeof(param));
+		memset(hmac, 0, sizeof(hmac));
+		APT_PrepareToDoApplicationJump(0, 0x0004000E00021800, 0);
+		APT_DoApplicationJump(param, sizeof(param), hmac);
 		}
 
 		if (kDown & KEY_START)
