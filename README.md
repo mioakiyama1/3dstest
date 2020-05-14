@@ -11,3 +11,5 @@ v0.02 - Fixed SMDH so correct info is given (in makefile)
 deltafont - not functional yet
 
 v0.03 - Allows remote launching of another app (press "B")
+
+v0.04 - press X for a new  screen
