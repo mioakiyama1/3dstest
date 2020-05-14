@@ -41,8 +41,8 @@ GFXBUILD	:=	$(BUILD)
 ROMFS		:=	romfs
 GFXBUILD	:=	$(ROMFS)/gfx
 APP_TITLE        := testingfunctionality
-APP_DESCRIPTION  := v0.03
-APP_AUTHOR       := mioakiyama1
+APP_DESCRIPTION  := v0.04
+APP_AUTHOR       := gittesting
 ICON        := icon.png
 
 #---------------------------------------------------------------------------------

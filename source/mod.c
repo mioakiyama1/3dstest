@@ -5,7 +5,7 @@
 int main(int argc, char **argv)
 {
 	gfxInitDefault();
-	
+	//unsigned 8 bit
 	u8 param[0x300];
 	u8 hmac[0x20];
 
@@ -24,20 +24,22 @@ int main(int argc, char **argv)
 	consoleSetWindow(&bWindow, 1, 1, 30, 20);
 
 	consoleSelect(&leftWindow);
-	printf("05-10-2020\n");
-	printf("Hi mom\n");
-	
-	consoleSelect(&bWindow);
-	printf("press START to exit\n");
-	printf("press A to get more text\n");
+	printf("Hello\n");
 	printf("this text is \x1b[31mred\x1b[0m\n");
 	//x1b is ANSI escape, ["xx"m where xx is color identifier
+	
+	consoleSelect(&bWindow);
+	printf("What you can do here\n\n");
+	printf("press X for experimental menu (0.04)");
+	printf("press A to get more text\n");
+	printf("press B to attempt to boot another title (depreciated)\n");	
+
 
 
 	consoleSelect(&rightWindow);
-	printf("Happy mother's day\n");
+	printf("3dsapp v0.04");
 
-	// Main loop
+	// loops once a frame
 	while (aptMainLoop())
 	{
 		//Scan all the inputs once for each frame
@@ -49,14 +51,14 @@ int main(int argc, char **argv)
 		if (kDown & KEY_A)
 		{
 		consoleSelect(&leftbWindow);
-		printf("A input works...");
+		printf("A input works...\n");
 		}
 		
 		if (kDown & KEY_B)
 		{
 		memset(param, 0, sizeof(param));
 		memset(hmac, 0, sizeof(hmac));
-		APT_PrepareToDoApplicationJump(0, 0x0004000E00021800, 0);
+		APT_PrepareToDoApplicationJump(0, 0x0004000E00021800LL, 0);
 		APT_DoApplicationJump(param, sizeof(param), hmac);
 		}
 
@@ -66,10 +68,42 @@ int main(int argc, char **argv)
 		printf("Exiting...");		
 		break;
 		}
-
-		// Flush and swap framebuffers
+		
+		if (kDown & KEY_X) //loads new screen
+		{
+			gfxInitDefault();
+			PrintConsole bWindow, tWindow;
+			consoleInit(GFX_BOTTOM, &bWindow);
+			consoleInit(GFX_TOP, &tWindow);
+			consoleSetWindow(&tWindow, 1, 1, 40, 30);
+			consoleSetWindow(&bWindow, 1, 1, 40, 30);
+			
+			consoleSelect(&tWindow);
+			printf("Welcome to alt menu *experimental*\n");
+			printf("You can't exit from here yet. Press HOME to...")
+				while(aptMainLoop())
+				{
+				hidScanInput();
+				u32 kDown = hidKeysDown();
+				
+					if(kDown & KEY_START)
+					{
+					gfxExit();
+					break;
+					}
+				gfxFlushBuffers();
+				gfxSwapBuffers();
+				gspWaitForVBlank();
+				}
+		}
+		
+		// Flush and swap framebuffers, there are two. swap at each frame
+		//framebuffers store egb info abt. each pixel
 		gfxFlushBuffers();
 		gfxSwapBuffers();
+
+		
+	
 
 		//Wait for VBlank
 		gspWaitForVBlank();
