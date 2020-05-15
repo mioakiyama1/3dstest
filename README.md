@@ -17,4 +17,6 @@ v0.05 - new screen can now launch applets
 
 v0.06 - remote launcher (B) has multiple options
 
+graphics include: will add a UI (in progress)
+
 Made with: devkitARM msys2 Programmer's notepad
